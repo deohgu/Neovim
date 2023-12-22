@@ -4,9 +4,20 @@ return {
     -- set to true or false etc.
     relativenumber = true, -- sets vim.opt.relativenumber
     number = true, -- sets vim.opt.number
-    spell = false, -- sets vim.opt.spell
+    spell = true, -- sets vim.opt.spell
     signcolumn = "auto", -- sets vim.opt.signcolumn to auto
-    wrap = false, -- sets vim.opt.wrap
+    wrap = true, -- sets vim.opt.wrap
+    guifont = "JetBrains Mono Thin:h13",
+
+    list = false, -- enable displaying of listchars
+    listchars = {
+      space = '⋅', -- this will show a dot for spaces
+      eol = '↲',   -- this symbol represents the end of a line
+      tab = '▸ ',  -- this will represent tabs
+      -- you can add more characters as needed
+    },
+
+  -- other options...
   },
   g = {
     mapleader = " ", -- sets vim.g.mapleader
