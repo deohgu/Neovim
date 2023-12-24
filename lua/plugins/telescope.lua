@@ -37,6 +37,10 @@ return {
     { "<leader>sw", false },
     { "<leader>sW", false },
 
+    -- git
+    { "<leader>gtc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
+    { "<leader>gts", "<cmd>Telescope git_status<CR>", desc = "status" },
+
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
 
     -- Mapping for searching hidden files

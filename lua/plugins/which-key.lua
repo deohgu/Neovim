@@ -14,7 +14,7 @@ return {
       ["<leader>c"] = { name = "+code" },
       ["<leader>f"] = { name = "+file/find" },
       ["<leader>g"] = { name = "+git" },
-      ["<leader>gh"] = { name = "+hunks" },
+      ["<leader>gt"] = { name = "git telescope" },
       ["<leader>q"] = { name = "+quit/session" },
       ["<leader>r"] = { name = "replace" },
       ["<leader>s"] = { name = "surround" },
