@@ -4,7 +4,7 @@ return {
 
     -- Normal mode mappings
     {
-      "<leader>ss",
+      "<leader>sa",
       function()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>Ysurround", true, true, true), "n", true)
       end,
@@ -31,7 +31,7 @@ return {
 
     -- Visual mode mappings
     {
-      "<leader>sS",
+      "<leader>sA",
       function()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>VSurround", true, true, true), "x", true)
       end,
