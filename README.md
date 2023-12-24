@@ -11,3 +11,5 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 - [x] Telescope
   - [x] Grep with arguments
 - [ ] rlane/pounce.nvim
+- [ ] shortcuts/no-neck-pain.nvim
+    - Look into adding a column to limit the width. colour column?
