@@ -10,3 +10,4 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 - [x] Which key
 - [x] Telescope
   - [x] Grep with arguments
+- [ ] rlane/pounce.nvim
