@@ -50,9 +50,76 @@ Everything under `<leader>g`?
 }
 ```
 
+### useful merge conflicts 
+
 ```
 { "<leader>gdm", ":Gvdiffsplit<CR>", mode = "n", desc = "Git diff split for merge conflicts" }
 ```
+
+### reviewed setup with telescope
+
+Fugitive.vim Configuration
+
+Fugitive will handle specific Git commands and detailed operations:
+
+```
+-- fugitive plugin setup
+{
+  'tpope/vim-fugitive',
+  keys = {
+    { "<leader>gb", ":Gblame<CR>", mode = "n", desc = "Git blame" },
+    { "<leader>gd", ":Gdiffsplit<CR>", mode = "n", desc = "Git diff split" },
+    { "<leader>gc", ":Git commit<CR>", mode = "n", desc = "Git commit" },
+    { "<leader>gw", ":Gwrite<CR>", mode = "n", desc = "Write to work tree and index (stage)" },
+    { "<leader>gdm", ":Gvdiffsplit<CR>", mode = "n", desc = "Git diff split for merge conflicts" },
+    -- Additional Fugitive commands as needed
+  },
+  -- other configurations
+}
+```
+
+Gitsigns.nvim Configuration
+
+Gitsigns will be used for in-buffer, real-time hunk actions:
+
+```
+local gs = require('gitsigns')
+
+-- gitsigns plugin setup
+{
+  'lewis6991/gitsigns.nvim',
+  keys = {
+    { "<leader>gn", function() gs.next_hunk() end, mode = "n", desc = "Next Hunk" },
+    { "<leader>gp", function() gs.prev_hunk() end, mode = "n", desc = "Prev Hunk" },
+    { "<leader>ghs", ":Gitsigns stage_hunk<CR>", mode = "n", desc = "Stage Hunk" },
+    { "<leader>ghr", ":Gitsigns reset_hunk<CR>", mode = "n", desc = "Reset Hunk" },
+    { "<leader>ghp", gs.preview_hunk, mode = "n", desc = "Preview Hunk" },
+    -- Additional Gitsigns hunk-related commands as needed
+  },
+  -- other configurations
+}
+```
+
+Telescope.nvim Configuration
+
+Telescope will provide interactive UIs for branch operations, file history, and status checks:
+
+```
+-- telescope plugin setup
+{
+  'nvim-telescope/telescope.nvim',
+  keys = {
+    { "<leader>gco", "<cmd>Telescope git_branches<cr>", mode = "n", desc = "Checkout Git branch" },
+    { "<leader>gh", "<cmd>Telescope git_commits<cr>", mode = "n", desc = "View Git file history" },
+    { "<leader>gst", "<cmd>Telescope git_status<cr>", mode = "n", desc = "View Git status" },
+    { "<leader>gsh", "<cmd>Telescope git_stash<cr>", mode = "n", desc = "View Git stash" },
+    -- Additional Telescope Git-related commands as needed
+  },
+  -- other configurations
+}
+```
+
+***
 
 ### Examples 
 
