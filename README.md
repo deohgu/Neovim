@@ -50,6 +50,10 @@ Everything under `<leader>g`?
 }
 ```
 
+```
+{ "<leader>gdm", ":Gvdiffsplit<CR>", mode = "n", desc = "Git diff split for merge conflicts" }
+```
+
 ### Examples 
 
 https://www.reddit.com/r/neovim/comments/13wd1st/looking_for_some_configs_using_lazynvim_to_use_as/
