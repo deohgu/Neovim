@@ -3,6 +3,17 @@
 A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
 Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
 
+## Modifying default plugins and mappings
+
+LazyVim starter Kit seems to come with plugins under the hood  
+that are not exposed to a user. As such, to change the default  
+behaviour we have to override said plugins by recreating them in  
+the plugins folder.  
+
+In order to override them without removing existing functionality  
+we can simply copy paste the full spec shown in the LazyVim Website:  
+https://www.lazyvim.org/plugins/ui
+
 ## Plugins to install
 
 - [x] Git Signs
