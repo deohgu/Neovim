@@ -38,8 +38,24 @@ return {
     { "<leader>sW", false },
 
     -- git
-    { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
-    { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status - Telescope" },
+    {
+      "<leader>gc",
+      function()
+        require("telescope.builtin").git_commits({
+          initial_mode = "normal",
+        })
+      end,
+      desc = "Commits",
+    },
+    {
+      "<leader>gs",
+      function()
+        require("telescope.builtin").git_status({
+          initial_mode = "normal",
+        })
+      end,
+      desc = "Status - Telescope",
+    },
 
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
 
