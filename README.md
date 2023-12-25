@@ -119,6 +119,19 @@ Telescope will provide interactive UIs for branch operations, file history, and 
 }
 ```
 
+fuzzy search for commit
+
+```
+{
+  'nvim-telescope/telescope.nvim',
+  keys = {
+    { "<leader>gf", "<cmd>Telescope git_commits<cr>", mode = "n", desc = "Search Git commits" },
+    -- other mappings...
+  },
+  -- other configurations...
+}
+```
+
 ***
 
 ### Examples 
