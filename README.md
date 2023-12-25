@@ -31,3 +31,11 @@ Everything under `<leader>g`?
 ### Examples 
 
 https://www.reddit.com/r/neovim/comments/13wd1st/looking_for_some_configs_using_lazynvim_to_use_as/
+
+## Troubleshooting
+
+* Trouble installing telescope fzf.
+  `Failed to run config for telescope-fzf-native.nvim`  
+    * Run `cd ~/.local/share/nvim/lazy/telescope-fzf-native.nvim && make && cd -`.
+    * This should be enough.
+* Plugin names should not have extra commas, just the `.lua` one.
