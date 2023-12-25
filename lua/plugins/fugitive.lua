@@ -2,29 +2,14 @@ return {
   "tpope/vim-fugitive",
   event = "LazyFile",
   keys = {
-    {
-      "<leader>gx",
-      function()
-        vim.cmd("Git blame")
-      end,
-      mode = "n", -- Normal mode
-      desc = "Git Blame",
-    },
-    {
-      "<leader>gd",
-      function()
-        vim.cmd("Gdiff")
-      end,
-      mode = "n", -- Normal mode
-      desc = "Git Diff", -- Description of the key mapping
-    },
+    { "<leader>gg", ":Git<CR>", mode = "n", desc = "Status - Fugitive" },
+    { "<leader>gb", ":Git blame<CR>", mode = "n", desc = "Blame" },
+    { "<leader>gd", ":Gdiffsplit<CR>", mode = "n", desc = "Diff split" },
+    -- Check if this is different from the above
+    { "<leader>gx", ":Gvdiffsplit<CR>", mode = "n", desc = "Diff split for merge conflicts" },
   },
   opts = {
     -- Options for fugitive (if needed)
   },
-  config = function()
-    -- Your configuration and key mappings for fugitive
-    vim.cmd([[ nnoremap <leader>gss :Git<CR> ]]) -- Example key mapping to open git status
-    -- vim.cmd([[ nnoremap <leader>gd :Gdiff<CR> ]])
-  end,
+  config = function() end,
 }

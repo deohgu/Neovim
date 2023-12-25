@@ -38,8 +38,8 @@ return {
     { "<leader>sW", false },
 
     -- git
-    { "<leader>gtc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
-    { "<leader>gts", "<cmd>Telescope git_status<CR>", desc = "status" },
+    { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
+    { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "Status - Telescope" },
 
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
 
