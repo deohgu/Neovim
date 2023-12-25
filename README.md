@@ -7,6 +7,8 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 
 - [ ] Git Signs
 - [ ] Git Fugitive
+    - https://www.reddit.com/r/vim/s/h9GJ6QYgZR
+    -
 - [x] Which key
 - [x] Telescope
   - [x] Grep with arguments
