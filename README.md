@@ -21,7 +21,8 @@ https://www.lazyvim.org/plugins/ui
 - [x] Which key
 - [x] Telescope
   - [x] Grep with arguments
-- [ ] rlane/pounce.nvim
+- [x] rlane/pounce.nvim
+  - Flash is installed instead by default.
 - [ ] shortcuts/no-neck-pain.nvim
     - Look into adding a column to limit the width. colour column?
 
