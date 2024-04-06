@@ -191,23 +191,21 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-local map = vim.keymap.set
-
 -- Change inner word without yanking
-map('n', 'ciw', '"_ciw', { desc = 'Change inner word without yanking' })
+vim.keymap.set('n', 'ciw', '"_ciw', { desc = 'Change inner word without yanking' })
 
 -- Open diagnostics hover window
-map('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true, desc = 'Open Error Diagnostics Hover' })
+vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true, desc = 'Open Error Diagnostics Hover' })
 
 -- Navigate to next diagnostic
-map('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true, desc = 'Next Error Diagnostic' })
+vim.keymap.set('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true, desc = 'Next Error Diagnostic' })
 
 -- Navigate to previous diagnostic
-map('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true, desc = 'Previous Error Diagnostic' })
+vim.keymap.set('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true, desc = 'Previous Error Diagnostic' })
 
 -- Stays in visual mode after indent
-map('v', '<', '<gv', { noremap = true, silent = true })
-map('v', '>', '>gv', { noremap = true, silent = true })
+vim.keymap.set('v', '<', '<gv', { noremap = true, silent = true })
+vim.keymap.set('v', '>', '>gv', { noremap = true, silent = true })
 
 -- Exit insert mode without pressing esc?
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
