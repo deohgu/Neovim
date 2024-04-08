@@ -121,6 +121,36 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+    -- On hover off the line, it shows the error on a hover
+    -- You will likely want to reduce updatetime which affects CursorHold
+    -- note: this setting is global and should be set only once
+    vim.o.updatetime = 250
+    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+      group = vim.api.nvim_create_augroup('float_diagnostic', { clear = true }),
+      callback = function()
+        vim.diagnostic.open_float(nil, { focus = false })
+      end,
+    })
+
+    -- Using this to set the virtual_text to false
+    vim.diagnostic.config {
+      virtual_text = false,
+      signs = true,
+      underline = true,
+      update_in_insert = false,
+      severity_sort = false,
+    }
+
+    -- Using this to set the error to line number, shows as red for example
+    for _, diag in ipairs { 'Error', 'Warn', 'Info', 'Hint' } do
+      vim.fn.sign_define('DiagnosticSign' .. diag, {
+        text = '', -- Customize the text or leave it empty
+        texthl = 'DiagnosticSign' .. diag,
+        linehl = '',
+        numhl = 'DiagnosticSign' .. diag,
+      })
+    end
+
     -- Enable the following language servers
     --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
     --
