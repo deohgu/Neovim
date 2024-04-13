@@ -16,6 +16,7 @@ return {
         'tpope/vim-rhubarb',
       },
     },
+    'nvim-telescope/telescope-frecency.nvim',
   },
 
   keys = {
@@ -46,6 +47,18 @@ return {
     { '<leader>sw', false },
     { '<leader>sW', false },
     { '<leader>gs', false },
+
+    {
+      '<leader>fb',
+      function()
+        require('telescope.builtin').buffers {
+          initial_mode = 'normal',
+          sort_mru = true,
+          sort_lastused = true,
+        }
+      end,
+      desc = 'Buffers',
+    },
 
     -- git
     {
@@ -174,6 +187,17 @@ return {
       end,
       mode = 'n', -- This specifies the mapping is for visual mode
       desc = 'Resume previous query',
+    },
+
+    {
+      '<leader>fd',
+      function()
+        require('telescope.builtin').diagnostics {
+          initial_mode = 'normal',
+        }
+      end,
+      mode = 'n', -- This specifies the mapping is for visual mode
+      desc = 'Show diagnostics',
     },
 
     -- add a keymap to browse plugin files
