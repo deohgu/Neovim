@@ -60,6 +60,17 @@ return {
       desc = 'Buffers',
     },
 
+    -- Mapping for searching hidden files
+    {
+      '<leader>fu', -- Change the keymap as needed
+      function()
+        require('telescope.builtin').find_files {
+          find_command = { 'rg', '--ignore', '--hidden', '--files', '-u' },
+        }
+      end,
+      desc = 'Find Unrestricted (.env)',
+    },
+
     -- git
     {
       '<leader>gc',
