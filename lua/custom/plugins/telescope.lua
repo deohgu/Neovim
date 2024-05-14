@@ -81,15 +81,6 @@ return {
       end,
       desc = 'Commits',
     },
-    {
-      '<leader>gt',
-      function()
-        require('telescope.builtin').git_status {
-          initial_mode = 'normal',
-        }
-      end,
-      desc = 'Status - Telescope',
-    },
 
     {
       '<leader>ff',
@@ -246,9 +237,6 @@ return {
         },
       },
     }
-
-    vim.keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, {})
-    -- vim.keymap.set("n", "<leader>fi", "<cmd>AdvancedGitSearch<CR>")
 
     require('telescope').load_extension 'fzf'
     require('telescope').load_extension 'live_grep_args'
