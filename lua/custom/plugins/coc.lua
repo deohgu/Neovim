@@ -108,7 +108,7 @@ return {
 
     -- Remap keys for gotos
     { 'gt', '<Plug>(coc-type-definition)' },
-    { '<gr', '<Plug>(coc-references)' },
+    { 'gr', '<Plug>(coc-references)' },
 
     -- Use K to show documentation
     { 'K', "<cmd>lua vim.fn['CocAction']('doHover')<CR>" },
