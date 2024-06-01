@@ -201,29 +201,17 @@ return {
       mode = 'n', -- This specifies the mapping is for visual mode
       desc = 'Show diagnostics',
     },
-
-    -- add a keymap to browse plugin files
-    -- {
-    -- "<leader>fp",
-    -- function()
-    -- require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
-    -- end,
-    -- desc = "Find Plugin File",
-    -- },
   },
   config = function()
     local telescope = require 'telescope'
-    local actions = require 'telescope.actions' -- Ensure actions is required
-    local lga_actions = require 'telescope-live-grep-args.actions'
-    local builtin = require 'telescope.builtin'
-    -- local vim = require("telescope-live-grep-args.actions")
+    -- local actions = require 'telescope.actions' -- Ensure actions is required
 
     telescope.setup {
       defaults = {
         mappings = {
           i = {
             -- Not working ,the sreen just flashes for some reason?
-            ['<c-f>'] = actions.to_fuzzy_refine,
+            -- ['<c-f>'] = actions.to_fuzzy_refine,
           },
         },
       },
@@ -240,6 +228,5 @@ return {
 
     require('telescope').load_extension 'fzf'
     require('telescope').load_extension 'live_grep_args'
-    -- require("telescope").load_extension("advanced-git-search")
   end,
 }
