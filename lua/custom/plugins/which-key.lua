@@ -22,6 +22,7 @@ return {
       ['<leader>w'] = { name = '+windows' },
       ['<leader>x'] = { name = '+diagnostics/quickfix' },
       ['<leader>d'] = { name = '+debugger' },
+      ['<leader>p'] = { name = '+portal' },
     },
   },
   config = function(_, opts)
