@@ -100,8 +100,8 @@ return {
     },
 
     -- Navigate diagnostics
-    { ']e', '<Plug>(coc-diagnostic-prev)' },
-    { '[e', '<Plug>(coc-diagnostic-next)' },
+    { ']e', '<Plug>(coc-diagnostic-next)' },
+    { '[e', '<Plug>(coc-diagnostic-prev)' },
 
     -- Go to definition
     { 'gd', '<Plug>(coc-definition)' },
@@ -116,50 +116,9 @@ return {
     -- Remap for rename current word
     { '<leader>rc', '<Plug>(coc-rename)' },
 
-    -- Remap for format selected region
-    -- { '<leader>f', '<Plug>(coc-format-selected)' },
-
-    -- Remap for do codeAction of selected region
-    -- {
-    --   '<leader>a',
-    --   '<Plug>(coc-codeaction-selected)',
-    --   mode = 'v',
-    -- },
-
-    -- Remap for do codeAction of current line
-    { '<leader>ac', '<Plug>(coc-codeaction)' },
-
-    -- Fix autofix problem of current line
-    { '<leader>Q', '<Plug>(coc-fix-current)' },
-
-    -- Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-pyright
-    -- {
-    --   '<TAB>',
-    --   '<Plug>(coc-range-select)',
-    --   mode = { 'n', 'x' },
-    -- },
-    -- {
-    --   '<S-TAB>',
-    --   '<Plug>(coc-range-select-backword)',
-    --   mode = 'x',
-    -- },
-
-    -- Use `:Format` to format current buffer
-    -- { '<leader>F', ':Format<CR>' },
-
     -- Use `:Fold` to fold current buffer
     -- { '<leader>F', ':Fold<CR>' },
 
-    -- use `:OR` for organize import of current buffer
-    { '<leader>OR', ':OR<CR>' },
-
-    -- Using CocList
-    -- Show all diagnostics
-    {
-      ']e',
-      'call CocAction(diagnosticNext)<cr>',
-      { nowait = true, silent = true, desc = 'Show diagnostic next' },
-    },
     { '<leader>cd', ':CocList diagnostics<CR>' },
 
     -- Manage extensions
@@ -176,19 +135,6 @@ return {
 
     -- Do default action for next item.
     { '<leader>cj', ':CocNext<CR>' },
-
-    -- Do default action for previous item.
-    { '<leader>ck', ':CocPrev<CR>' },
-
-    -- Resume latest coc list
-    { '<leader>cl', ':CocListResume<CR>' },
-
-    -- coc-snippets
-    -- {
-    --   '<CR>',
-    --   vim.F.CocAutocomplete,
-    --   mode = 'i',
-    -- },
 
     {
       '<CR>',
