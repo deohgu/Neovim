@@ -50,34 +50,6 @@ return {
   },
 
   keys = {
-    -- disable the keymap to grep files
-    { '<leader>/', false },
-    { '<leader>s', false },
-    { '<leader>sa', false },
-    { '<leader>s"', false },
-    { '<leader>sb', false },
-    { '<leader>sc', false },
-    { '<leader>sC', false },
-    { '<leader>sd', false },
-    { '<leader>sD', false },
-    { '<leader>sg', false },
-    { '<leader>sG', false },
-    { '<leader>sh', false },
-    { '<leader>sH', false },
-    { '<leader>sk', false },
-    { '<leader>sm', false },
-    { '<leader>sM', false },
-    { '<leader>so', false },
-    { '<leader>sr', false },
-    { '<leader>sR', false },
-    { '<leader>ss', false },
-    { '<leader>sS', false },
-    { '<leader>st', false },
-    { '<leader>sT', false },
-    { '<leader>sw', false },
-    { '<leader>sW', false },
-    { '<leader>gs', false },
-
     {
       '<leader>fb',
       function()
