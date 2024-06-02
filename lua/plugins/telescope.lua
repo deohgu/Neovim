@@ -1,12 +1,6 @@
 return {
   'nvim-telescope/telescope.nvim',
   dependencies = {
-    {
-      'nvim-telescope/telescope-live-grep-args.nvim',
-      -- This will not install any breaking changes.
-      -- For major updates, this must be adjusted manually.
-      version = '^1.0.0',
-    },
     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
     {
       'aaronhallaert/advanced-git-search.nvim',
@@ -16,7 +10,43 @@ return {
         'tpope/vim-rhubarb',
       },
     },
-    'nvim-telescope/telescope-frecency.nvim',
+
+    'nvim-lua/plenary.nvim',
+    -- Fuzzy Finder Algorithm which requires local dependencies to be built.
+    -- Only load if `make` is available. Make sure you have the system
+    -- requirements installed.
+    {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      build = 'make',
+      cond = function()
+        return vim.fn.executable 'make' == 1
+      end,
+    },
+    {
+      -- frecency algorithm for sorting results
+      'danielfalk/smart-open.nvim',
+      branch = '0.2.x',
+      dependencies = {
+        'kkharji/sqlite.lua',
+        {
+          'nvim-telescope/telescope-fzf-native.nvim',
+          build = 'make',
+        },
+        { 'nvim-telescope/telescope-fzy-native.nvim' },
+      },
+      opts = {
+        result_limit = 50,
+      },
+    },
+    -- 'debugloop/telescope-undo.nvim',
+    {
+      'nvim-telescope/telescope-live-grep-args.nvim',
+      -- This will not install any breaking changes.
+      -- For major updates, this must be adjusted manually.
+      version = '^1.0.0',
+    },
+
+    { 'fannheyward/telescope-coc.nvim' },
   },
 
   keys = {
@@ -60,6 +90,14 @@ return {
       desc = 'Buffers',
     },
 
+    {
+      '<leader>fj',
+      function()
+        require('telescope.builtin').jumplist {}
+      end,
+      desc = 'Jumplist',
+    },
+
     -- Mapping for searching hidden files
     {
       '<leader>fu', -- Change the keymap as needed
@@ -82,31 +120,46 @@ return {
       desc = 'Commits',
     },
 
-    {
-      '<leader>ff',
-      function()
-        require('telescope.builtin').find_files {
-          prompt_title = 'Find Files',
-          attach_mappings = function(prompt_bufnr, map)
-            map('i', '<C-t>', function()
-              local prompt_bufnr = vim.api.nvim_get_current_buf()
-              local prompt_text = vim.api.nvim_buf_get_lines(prompt_bufnr, 0, 1, false)[1]
-              vim.api.nvim_buf_set_text(prompt_bufnr, 0, #prompt_text, 0, #prompt_text, { ' .$' })
-              vim.api.nvim_win_set_cursor(0, { 1, #prompt_text + 2 })
-            end)
-
-            return true
-          end,
-        }
-      end,
-      desc = 'Find Files',
-    },
+    -- NOTE: Telescope native file search
+    -- {
+    --   '<leader>ff',
+    --   function()
+    --     require('telescope.builtin').find_files {
+    --       prompt_title = 'Find Files',
+    --       attach_mappings = function(prompt_bufnr, map)
+    --         map('i', '<C-t>', function()
+    --           local prompt_bufnr = vim.api.nvim_get_current_buf()
+    --           local prompt_text = vim.api.nvim_buf_get_lines(prompt_bufnr, 0, 1, false)[1]
+    --           vim.api.nvim_buf_set_text(prompt_bufnr, 0, #prompt_text, 0, #prompt_text, { ' .$' })
+    --           vim.api.nvim_win_set_cursor(0, { 1, #prompt_text + 2 })
+    --         end)
+    --
+    --         return true
+    --       end,
+    --     }
+    --   end,
+    --   desc = 'Find Files',
+    -- },
 
     -- Mapping for searching hidden files
     {
       '<leader>fF', -- Change the keymap as needed
       function()
         require('telescope.builtin').find_files { hidden = true }
+      end,
+      desc = 'Find Files + Hidden',
+    },
+
+    {
+      '<leader>ff', -- Change the keymap as needed
+      function()
+        -- require('telescope.builtin').find_files { hidden = true }
+        require('telescope').extensions.smart_open.smart_open {
+          cwd_only = true,
+          filename_first = true,
+          show_scores = false,
+          match_algorithm = 'fzf',
+        }
       end,
       desc = 'Find Files + Hidden',
     },
@@ -202,21 +255,33 @@ return {
       desc = 'Show diagnostics',
     },
   },
+
+  -- { '<leader>fu', '<cmd>Telescope undo<cr>', desc = 'undo history' },
+  -- { -- lazy style key map
+  --   '<leader>u',
+  --   '<cmd>Telescope undo<cr>',
+  --   desc = 'undo history',
+  -- },
+
+  -- TODO: Could not get to work
+  -- {
+  --   '<leader>fu',
+  --   function()
+  --     require('telescope').extensions.undo.undo {}
+  --   end,
+  --   desc = 'Find Files + Hidden',
+  -- },
+
   config = function()
     local telescope = require 'telescope'
-    -- local actions = require 'telescope.actions' -- Ensure actions is required
 
     telescope.setup {
-      defaults = {
-        mappings = {
-          i = {
-            -- Not working ,the sreen just flashes for some reason?
-            -- ['<c-f>'] = actions.to_fuzzy_refine,
-          },
-        },
-      },
-
       extensions = {
+        coc = {
+          theme = 'dropdown',
+          prefer_locations = false,
+          push_cursor_on_edit = true,
+        },
         live_grep_args = {
           auto_quoting = false, -- disable auto-quoting
           mappings = {
@@ -228,5 +293,8 @@ return {
 
     require('telescope').load_extension 'fzf'
     require('telescope').load_extension 'live_grep_args'
+    telescope.load_extension 'coc'
+    -- require('telescope').load_extension 'undo'
+    require('telescope').load_extension 'smart_open'
   end,
 }
