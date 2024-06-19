@@ -162,8 +162,8 @@ return {
                 local prompt_bufnr = vim.api.nvim_get_current_buf()
                 local prompt_text = vim.api.nvim_buf_get_lines(prompt_bufnr, 0, 1, false)[1]
 
-                vim.api.nvim_buf_set_text(prompt_bufnr, 0, #prompt_text, 0, #prompt_text, { ' -g**' })
-                vim.api.nvim_win_set_cursor(0, { 1, #prompt_text + 4 })
+                vim.api.nvim_buf_set_text(prompt_bufnr, 0, #prompt_text, 0, #prompt_text, { ' -g**/*/**' })
+                vim.api.nvim_win_set_cursor(0, { 1, #prompt_text + 6 })
               end,
               ['<C-h>'] = function()
                 local prompt_bufnr = vim.api.nvim_get_current_buf()
