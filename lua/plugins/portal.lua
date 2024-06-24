@@ -7,7 +7,7 @@ return {
   },
   opts = {},
   keys = {
-    { '<leader>po', '<cmd>Portal jumplist backward<cr>', desc = 'Portal Jump backward' },
-    { '<leader>pi', '<cmd>Portal jumplist forward<cr>', desc = 'Portal Jump forward' },
+    { '<A-o>', '<cmd>Portal jumplist backward<cr>', desc = 'Portal Jump backward' },
+    { '<A-i>', '<cmd>Portal jumplist forward<cr>', desc = 'Portal Jump forward' },
   },
 }
