@@ -103,7 +103,7 @@ vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'J', '5j', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'K', '5k', { noremap = true, silent = true })
 
-vim.keymap.set('n', '<leader>i', ':let @+=expand("%:p")<CR>', { desc = 'Copy current file path to clipboard' })
+vim.keymap.set('n', '<leader>p', ':let @+=expand("%:p")<CR>', { desc = 'Copy current file path to clipboard' })
 
 -- [[ Basic Autocommands ]]
 --
