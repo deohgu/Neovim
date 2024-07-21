@@ -173,6 +173,21 @@ return {
                   vim.api.nvim_buf_set_text(prompt_bufnr, 0, #prompt_text, 0, #prompt_text, { ' --hidden' })
                 end
               end,
+              -- Add double quotes around text and append -F at the end
+              ['<C-f>'] = function()
+                local prompt_bufnr = vim.api.nvim_get_current_buf()
+                local prompt_text = vim.api.nvim_buf_get_lines(prompt_bufnr, 0, 1, false)[1]
+
+                -- Move cursor to the beginning of the line and insert the opening double quote
+                vim.api.nvim_win_set_cursor(0, { 1, 1 })
+                vim.api.nvim_put({ '"' }, 'c', true, true)
+
+                -- Move cursor to the end of the line and insert the closing double quote and -F
+                local end_pos = #prompt_text + 2 -- Adjusting position to account for the opening quote
+                vim.api.nvim_win_set_cursor(0, { 1, end_pos })
+                vim.api.nvim_put({ '"' }, 'c', true, true)
+                vim.api.nvim_put({ ' -F' }, 'c', true, true)
+              end,
             },
           },
         }
