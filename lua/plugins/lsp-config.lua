@@ -31,6 +31,17 @@ return { -- LSP Configuration & Plugins
         -- map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
         map('<leader>i', vim.lsp.buf.hover, 'Hover Documentation')
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        -- map(']e', vim.diagnostic.goto_next(), 'Next Diagnostic')
+        -- map('[e', vim .diagnostic.goto_prev(), 'Previous Diagnostic')
+
+        -- Open diagnostics hover window
+        vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true, desc = 'Open Error Diagnostics Hover' })
+
+        -- Navigate to next diagnostic
+        vim.keymap.set('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true, desc = 'Next Error Diagnostic' })
+
+        -- Navigate to previous diagnostic
+        vim.keymap.set('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true, desc = 'Previous Error Diagnostic' })
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
@@ -98,9 +109,11 @@ return { -- LSP Configuration & Plugins
           },
         },
       },
+      rust = {},
     }
 
     require('mason').setup()
+
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
@@ -115,6 +128,8 @@ return { -- LSP Configuration & Plugins
       'markdownlint',
       'yamllint',
       'marksman',
+      'rust',
+      -- 'rust_analyzer',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

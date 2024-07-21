@@ -29,6 +29,7 @@ return {
       'bash',
       'terraform',
       'markdown',
+      'rust',
     },
   },
   config = function(_, opts)
