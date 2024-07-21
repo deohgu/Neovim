@@ -3,6 +3,9 @@ return {
   event = 'VeryLazy',
   opts = {
     plugins = { spelling = true },
+    delay = function()
+      return 0
+    end,
     defaults = {
       mode = { 'n', 'v' },
       ['g'] = { name = '+goto' },
@@ -28,5 +31,8 @@ return {
     local wk = require 'which-key'
     wk.setup(opts)
     wk.register(opts.defaults)
+
+    vim.o.timeout = true
+    vim.o.timeoutlen = 0
   end,
 }
