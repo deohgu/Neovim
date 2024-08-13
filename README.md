@@ -2,7 +2,7 @@
 
 Personal Neovim config.  
 
-**Requirements for an MacBook with Apple Silicon**
+**Requirements for an Apple Silicon MacBook**
 
 - `brew install neovim`
 - `brew install ripgrep`
