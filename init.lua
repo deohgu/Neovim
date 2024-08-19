@@ -2,6 +2,15 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Set the Python provider to use the dedicated Neovim environment
+vim.g.python3_host_prog = vim.fn.expand '~/neovim_env/bin/python'
+
+-- Optional: Disable Python 2 provider
+vim.g.loaded_python_provider = 0
+
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- [[ Setting options ]]
 
 vim.o.backup = false -- Never backed up
@@ -131,7 +140,11 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup {
+require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   { import = 'plugins' },
-}
+}, {
+  rocks = {
+    enabled = false,
+  },
+})

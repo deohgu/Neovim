@@ -20,7 +20,6 @@ return {
       'hcl',
       'sql',
       'dockerfile',
-      'hcl',
       'go',
       'typescript',
       'html',
@@ -30,6 +29,13 @@ return {
       'terraform',
       'markdown',
       'rust',
+      -- Add the following parsers to match the health check
+      'regex',
+      'c',
+      'vim',
+      'vimdoc',
+      'query',
+      'markdown_inline',
     },
   },
   config = function(_, opts)
