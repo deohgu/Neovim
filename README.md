@@ -6,6 +6,7 @@ Personal Neovim config.
 
 - `brew install neovim`
 - `brew install ripgrep`
+- `brew install --cask font-hack-nerd-font`
 - `brew install sqlite`
 - Python
   - `export PATH=/usr/local/bin:/usr/local/sbin:$PATH`
