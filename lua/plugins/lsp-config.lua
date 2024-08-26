@@ -119,7 +119,59 @@ return { -- LSP Configuration & Plugins
           },
         },
       },
-      rust = {},
+      rust_analyzer = {},
+      tsserver = {},
+      jsonls = {
+        filetypes = { 'json', 'jsonc' },
+        settings = {
+          json = {
+            -- Schemas https://www.schemastore.org
+            schemas = {
+              {
+                fileMatch = { 'package.json' },
+                url = 'https://json.schemastore.org/package.json',
+              },
+              {
+                fileMatch = { 'tsconfig*.json' },
+                url = 'https://json.schemastore.org/tsconfig.json',
+              },
+              {
+                fileMatch = {
+                  '.prettierrc',
+                  '.prettierrc.json',
+                  'prettier.config.json',
+                },
+                url = 'https://json.schemastore.org/prettierrc.json',
+              },
+              {
+                fileMatch = { '.eslintrc', '.eslintrc.json' },
+                url = 'https://json.schemastore.org/eslintrc.json',
+              },
+              {
+                fileMatch = { '.babelrc', '.babelrc.json', 'babel.config.json' },
+                url = 'https://json.schemastore.org/babelrc.json',
+              },
+              {
+                fileMatch = { 'lerna.json' },
+                url = 'https://json.schemastore.org/lerna.json',
+              },
+              {
+                fileMatch = { 'now.json', 'vercel.json' },
+                url = 'https://json.schemastore.org/now.json',
+              },
+              {
+                fileMatch = {
+                  '.stylelintrc',
+                  '.stylelintrc.json',
+                  'stylelint.config.json',
+                },
+                url = 'http://json.schemastore.org/stylelintrc.json',
+              },
+            },
+          },
+        },
+      },
+      cssls = {},
     }
 
     require('mason').setup()
@@ -138,10 +190,14 @@ return { -- LSP Configuration & Plugins
       'markdownlint',
       'yamllint',
       'marksman',
-      'rust',
-      -- 'rust_analyzer',
+      'rust_analyzer',
+      'tsserver',
+      'jsonls',
+      'cssls',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+
+    -- require('lspconfig').jsonls.setup {}
 
     require('mason-lspconfig').setup {
       handlers = {

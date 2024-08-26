@@ -10,10 +10,17 @@ return { -- Autoformat
       lua = { 'stylua' },
       -- Conform can also run multiple formatters sequentially
       python = { 'isort', 'black' },
-      --
-      -- You can use a sub-list to tell conform to run *until* a formatter
-      -- is found.
-      javascript = { { 'prettierd', 'prettier' } },
+      -- Using the new syntax for JavaScript formatters
+      javascript = {
+        'prettierd',
+        'prettier',
+      },
+    },
+    -- New option to replace the deprecated nested {} syntax
+    javascript = {
+      formatters = { 'prettierd', 'prettier' },
+      -- This replaces the old { { 'prettierd', 'prettier' } } syntax
+      stop_after_first = true,
     },
   },
 }
