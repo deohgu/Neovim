@@ -31,6 +31,7 @@ return { -- Autoformat
       javascriptreact = { { 'prettierd', 'prettier' } },
       typescript = { { 'prettierd', 'prettier' } },
       typescriptreact = { { 'prettierd', 'prettier' } },
+      html = { 'prettierd', 'prettier' }, -- Add this line
       -- yaml = { 'yamllint', 'yamlfmt' },
       rust = {},
     },
