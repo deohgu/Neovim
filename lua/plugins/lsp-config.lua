@@ -16,19 +16,7 @@ return {
     config = function()
       require('mason-tool-installer').setup {
         ensure_installed = {
-          -- LSP servers (use Mason package names)
-          'pyright',
-          'terraform-ls',
-          'yaml-language-server',
-          'helm-ls',
-          'dockerfile-language-server',
-          'docker-compose-language-service',
-          'lua-language-server',
-          'rust-analyzer',
-          'ts_ls',
-          'json-lsp',
-          'css-lsp',
-          -- Formatters and linters
+          -- Formatters and linters only
           'stylua',
           'black',
           'isort',
@@ -38,8 +26,6 @@ return {
           'markdownlint',
           'yamllint',
           'marksman',
-          'angular-language-server',
-          -- Add other tools as needed
         },
         auto_update = true, -- Automatically update installed tools
         run_on_start = true, -- Run installation on startup
@@ -217,6 +203,7 @@ return {
       -- Setup mason-lspconfig to automatically setup LSP servers
       require('mason-lspconfig').setup {
         ensure_installed = vim.tbl_keys(servers), -- Use LSP server names here
+
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
