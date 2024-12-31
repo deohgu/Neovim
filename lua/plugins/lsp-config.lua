@@ -195,6 +195,8 @@ return {
           },
         },
         cssls = {},
+        -- this will install the latest version, you might need to do MasonInstall angular-language-server@11.2.14
+        -- We will need to figure our a way for this to work better, maybe coc again is the way..
         angularls = {
           -- Angular Language Service configuration
         },
