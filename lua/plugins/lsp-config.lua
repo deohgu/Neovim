@@ -65,7 +65,8 @@ return {
           map('<leader>fs', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
           map('<leader>fS', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
           map('<leader>rc', vim.lsp.buf.rename, '[R]e[n]ame')
-          map('<leader>i', vim.lsp.buf.hover, 'Hover Documentation')
+          -- Using the lewis6991/hover.nvim plugin for this now
+          -- map('<leader>i', vim.lsp.buf.hover, 'Hover Documentation')
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
           -- Diagnostic key mappings
