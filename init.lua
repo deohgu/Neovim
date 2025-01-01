@@ -111,7 +111,7 @@ vim.keymap.set('v', '<', '<gv', { noremap = true, silent = true })
 vim.keymap.set('v', '>', '>gv', { noremap = true, silent = true })
 
 -- Exit insert mode without pressing esc?
-vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
 
 -- Relative jumping mappings
 vim.api.nvim_set_keymap('n', 'J', '5j', { noremap = true, silent = true })
