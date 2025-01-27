@@ -29,7 +29,14 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 vim.opt.clipboard = 'unnamedplus'
 
+vim.opt.wrapmargin = 10 -- Start wrapping 2 characters before the edge of the screen
+vim.opt.colorcolumn = '100' -- Optional visual guide
+
+vim.opt.wrap = true
+vim.opt.linebreak = true
 vim.opt.breakindent = true
+vim.opt.showbreak = '>> '
+vim.opt.textwidth = 80
 
 -- Save undo history
 vim.opt.undofile = true
