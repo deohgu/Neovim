@@ -23,7 +23,7 @@ return { -- Autoformat
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
-      python = { 'isort', 'black' },
+      python = { 'ruff_fix', 'ruff_format' }, -- Run fix first, then format
       terraform = { 'terraform_fmt' },
       tf = { 'terraform_fmt' },
       ['terraform-vars'] = { 'terraform_fmt' },
@@ -31,9 +31,15 @@ return { -- Autoformat
       javascriptreact = { { 'prettierd', 'prettier' } },
       typescript = { { 'prettierd', 'prettier' } },
       typescriptreact = { { 'prettierd', 'prettier' } },
-      html = { 'prettierd', 'prettier' }, -- Add this line
-      -- yaml = { 'yamllint', 'yamlfmt' },
+      html = { 'prettierd', 'prettier' },
       rust = {},
+    },
+    formatters = {
+      ruff_fix = {
+        command = 'ruff',
+        args = { 'check', '--select', 'I', '--fix', '-e', '-n', '--stdin-filename', '$FILENAME', '-' },
+        stdin = true,
+      },
     },
   },
 }

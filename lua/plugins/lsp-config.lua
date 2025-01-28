@@ -18,14 +18,17 @@ return {
         ensure_installed = {
           -- Formatters and linters only
           'stylua',
-          'black',
-          'isort',
-          'flake8',
+          -- 'isort',
+          -- 'flake8',
           'tflint',
           'hadolint',
           'markdownlint',
           'yamllint',
           'marksman',
+          'eslint_d',
+          'prettier',
+          'black',
+          'ruff-lsp', -- Add ruff for enhanced Python linting
         },
         auto_update = true, -- Automatically update installed tools
         run_on_start = true, -- Run installation on startup
@@ -200,6 +203,67 @@ return {
         -- We will need to figure our a way for this to work better, maybe coc again is the way..
         angularls = {
           -- Angular Language Service configuration
+        },
+
+        tsserver = {
+          settings = {
+            typescript = {
+              inlayHints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
+              suggest = {
+                completeFunctionCalls = true,
+              },
+              preferences = {
+                importModuleSpecifier = 'non-relative',
+              },
+            },
+            javascript = {
+              inlayHints = {
+                includeInlayParameterNameHints = 'all',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = true,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+              },
+            },
+          },
+          init_options = {
+            preferences = {
+              importModuleSpecifierPreference = 'non-relative',
+              importModuleSpecifierEnding = 'minimal',
+            },
+          },
+
+          eslint = {
+            settings = {
+              workingDirectory = { mode = 'auto' },
+              format = { enable = true },
+              lint = { enable = true },
+            },
+          },
+
+          ruff_lsp = {
+            settings = {
+              lint = {
+                run = 'onType', -- Run linting as you type
+              },
+              organizeImports = {
+                enable = true, -- Automatically organize imports
+              },
+              format = {
+                enable = true, -- Enable code formatting
+              },
+            },
+          },
         },
       }
 
