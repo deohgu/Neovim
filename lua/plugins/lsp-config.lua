@@ -28,7 +28,7 @@ return {
           'eslint_d',
           'prettier',
           'black',
-          'ruff', -- Add ruff for enhanced Python linting
+          'ruff_lsp', -- Add ruff for enhanced Python linting
         },
         auto_update = true, -- Automatically update installed tools
         run_on_start = true, -- Run installation on startup
@@ -148,7 +148,6 @@ return {
           },
         },
         rust_analyzer = {},
-        ts_ls = {},
         jsonls = {
           filetypes = { 'json', 'jsonc' },
           settings = {
@@ -205,7 +204,7 @@ return {
           -- Angular Language Service configuration
         },
 
-        tsserver = {
+        ts_ls = {
           settings = {
             typescript = {
               inlayHints = {
@@ -251,7 +250,7 @@ return {
             },
           },
 
-          ruff = {
+          ruff_lsp = {
             settings = {
               lint = {
                 run = 'onType', -- Run linting as you type
