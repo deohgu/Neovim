@@ -28,7 +28,7 @@ return {
           'eslint_d',
           'prettier',
           'black',
-          'ruff-lsp', -- Add ruff for enhanced Python linting
+          'ruff', -- Add ruff for enhanced Python linting
         },
         auto_update = true, -- Automatically update installed tools
         run_on_start = true, -- Run installation on startup
