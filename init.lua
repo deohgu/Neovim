@@ -33,7 +33,7 @@ vim.opt.wrapmargin = 10 -- Start wrapping 2 characters before the edge of the sc
 vim.opt.colorcolumn = '100' -- Optional visual guide
 
 vim.opt.wrap = true
-vim.opt.linebreak = true
+vim.opt.linebreak = false
 vim.opt.breakindent = true
 vim.opt.showbreak = '>> '
 vim.opt.textwidth = 80
