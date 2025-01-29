@@ -251,7 +251,7 @@ return {
             },
           },
 
-          ruff_lsp = {
+          ruff = {
             settings = {
               lint = {
                 run = 'onType', -- Run linting as you type
