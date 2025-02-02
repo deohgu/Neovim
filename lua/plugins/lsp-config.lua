@@ -18,8 +18,6 @@ return {
         ensure_installed = {
           -- Formatters and linters only
           'stylua',
-          -- 'isort',
-          -- 'flake8',
           'tflint',
           'hadolint',
           'markdownlint',
@@ -28,7 +26,7 @@ return {
           'eslint_d',
           'prettier',
           'black',
-          'ruff_lsp', -- Add ruff for enhanced Python linting
+          'ruff', -- Python
         },
         auto_update = true, -- Automatically update installed tools
         run_on_start = true, -- Run installation on startup
@@ -39,7 +37,6 @@ return {
   -- LSP configurations (lazy-loaded on buffer read or new file)
   {
     'neovim/nvim-lspconfig',
-    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       'williamboman/mason.nvim', -- Ensure mason is loaded before lspconfig
       'williamboman/mason-lspconfig.nvim',
@@ -250,7 +247,7 @@ return {
             },
           },
 
-          ruff_lsp = {
+          ruff = {
             settings = {
               lint = {
                 run = 'onType', -- Run linting as you type
@@ -274,7 +271,13 @@ return {
           function(server_name)
             local server = servers[server_name] or {}
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+
+            -- Check if the server actually exists in lspconfig before calling setup
+            if require('lspconfig')[server_name] then
+              require('lspconfig')[server_name].setup(server)
+            else
+              vim.notify("LSP server '" .. server_name .. "' not found in lspconfig", vim.log.levels.WARN)
+            end
           end,
         },
       }
