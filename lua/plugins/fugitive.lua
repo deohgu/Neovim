@@ -2,7 +2,6 @@ return {
   'tpope/vim-fugitive',
   event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
   keys = {
-    { '<leader>gb', ':Git blame<CR>', mode = 'n', desc = 'Blame' },
     { '<leader>gd', ':Gdiffsplit<CR>', mode = 'n', desc = 'Diff split' },
     { '<leader>gD', ':Gvdiffsplit<CR>', mode = 'n', desc = 'Diff split vertical' },
 
