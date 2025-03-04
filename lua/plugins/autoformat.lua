@@ -6,7 +6,7 @@ return { -- Autoformat
     {
       '<leader>F',
       function()
-        require('conform').format { async = true, lsp_fallback = true }
+        require('conform').format { async = true, lsp_fallback = true, quiet = true }
       end,
       mode = '',
       desc = '[F]ormat buffer',
@@ -17,7 +17,7 @@ return { -- Autoformat
     format_on_save = function(bufnr)
       local disable_filetypes = { c = true, cpp = true }
       return {
-        timeout_ms = 500,
+        timeout_ms = 2000,
         lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
       }
     end,
@@ -27,11 +27,11 @@ return { -- Autoformat
       terraform = { 'terraform_fmt' },
       tf = { 'terraform_fmt' },
       ['terraform-vars'] = { 'terraform_fmt' },
-      javascript = { { 'prettierd', 'prettier' } },
-      javascriptreact = { { 'prettierd', 'prettier' } },
-      typescript = { { 'prettierd', 'prettier' } },
-      typescriptreact = { { 'prettierd', 'prettier' } },
-      html = { 'prettierd', 'prettier' },
+      javascript = { 'prettierd' },
+      javascriptreact = { 'prettierd' },
+      typescript = { 'prettierd' },
+      typescriptreact = { 'prettierd' },
+      html = { 'prettierd' },
       rust = {},
     },
     formatters = {

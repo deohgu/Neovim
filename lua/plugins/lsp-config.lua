@@ -1,5 +1,6 @@
 return {
-  -- Mason package manager configuration (loads immediately)
+
+  -- 1) Mason package manager configuration (loads immediately)
   {
     'williamboman/mason.nvim',
     config = function()
@@ -7,7 +8,7 @@ return {
     end,
   },
 
-  -- Mason tool installer configuration (loads immediately to install servers/tools at startup)
+  -- 2) Mason tool installer configuration (for installing CLI tools at startup)
   {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     dependencies = {
@@ -16,29 +17,29 @@ return {
     config = function()
       require('mason-tool-installer').setup {
         ensure_installed = {
-          -- Formatters and linters only
+          -- These are CLI binaries for linting/formatting used by none-ls
           'stylua',
           'tflint',
           'hadolint',
           'markdownlint',
           'yamllint',
           'marksman',
-          'eslint_d',
+          'eslint_d', -- for JS/TS linting in none-ls
           'prettier',
           'black',
-          'ruff', -- Python
+          'ruff', -- for Python linting in none-ls
         },
-        auto_update = true, -- Automatically update installed tools
-        run_on_start = true, -- Run installation on startup
+        auto_update = true,
+        run_on_start = true,
       }
     end,
   },
 
-  -- LSP configurations (lazy-loaded on buffer read or new file)
+  -- 3) LSP configurations (lazy-loaded on buffer read or new file)
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      'williamboman/mason.nvim', -- Ensure mason is loaded before lspconfig
+      'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       { 'folke/neodev.nvim', opts = {} },
     },
@@ -65,8 +66,6 @@ return {
           map('<leader>fs', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
           map('<leader>fS', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
           map('<leader>rc', vim.lsp.buf.rename, '[R]e[n]ame')
-          -- Using the lewis6991/hover.nvim plugin for this now
-          -- map('<leader>i', vim.lsp.buf.hover, 'Hover Documentation')
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
           -- Diagnostic key mappings
@@ -119,6 +118,7 @@ return {
 
       -- LSP server configurations
       local servers = {
+        -- Python
         pyright = {
           settings = {
             python = {
@@ -130,11 +130,21 @@ return {
             },
           },
         },
+
+        -- Terraform
         terraformls = {},
+
+        -- YAML
         yamlls = {},
+
+        -- Helm
         helm_ls = {},
+
+        -- Docker
         dockerls = {},
         docker_compose_language_service = {},
+
+        -- Lua
         lua_ls = {
           settings = {
             Lua = {
@@ -144,7 +154,11 @@ return {
             },
           },
         },
+
+        -- Rust
         rust_analyzer = {},
+
+        -- JSON
         jsonls = {
           filetypes = { 'json', 'jsonc' },
           settings = {
@@ -194,14 +208,18 @@ return {
             },
           },
         },
+
+        -- CSS
         cssls = {},
-        -- this will install the latest version, you might need to do MasonInstall angular-language-server@11.2.14
-        -- We will need to figure our a way for this to work better, maybe coc again is the way..
+
+        -- Angular
         angularls = {
           -- Angular Language Service configuration
         },
 
+        -- TypeScript / JavaScript
         ts_ls = {
+          -- Only code-intelligence settings; no ESLint references
           settings = {
             typescript = {
               inlayHints = {
@@ -238,41 +256,18 @@ return {
               importModuleSpecifierEnding = 'minimal',
             },
           },
-
-          eslint = {
-            settings = {
-              workingDirectory = { mode = 'auto' },
-              format = { enable = true },
-              lint = { enable = true },
-            },
-          },
-
-          ruff = {
-            settings = {
-              lint = {
-                run = 'onType', -- Run linting as you type
-              },
-              organizeImports = {
-                enable = true, -- Automatically organize imports
-              },
-              format = {
-                enable = true, -- Enable code formatting
-              },
-            },
-          },
         },
       }
 
       -- Setup mason-lspconfig to automatically setup LSP servers
       require('mason-lspconfig').setup {
         ensure_installed = vim.tbl_keys(servers), -- Use LSP server names here
-
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
 
-            -- Check if the server actually exists in lspconfig before calling setup
+            -- Check if the server exists in lspconfig
             if require('lspconfig')[server_name] then
               require('lspconfig')[server_name].setup(server)
             else
