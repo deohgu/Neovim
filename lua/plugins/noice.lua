@@ -24,6 +24,41 @@ return {
     -- OPTIONAL:
     --   `nvim-notify` is only needed, if you want to use the notification view.
     --   If not available, we use `mini` as the fallback
-    'rcarriga/nvim-notify',
+    {
+      'rcarriga/nvim-notify',
+      config = function()
+        require('notify').setup {
+          -- Set background color for transparency
+          background_colour = '#000000',
+
+          -- Make notifications smaller and less intrusive
+          max_width = 50, -- Maximum width of notification window
+          max_height = 6, -- Maximum height of notification window
+
+          -- Control notification behavior
+          stages = 'fade', -- Animation style: fade, slide, static
+          timeout = 3000, -- Time in milliseconds before notification disappears (3 seconds)
+
+          -- Limit number of notifications
+          max_notifications = 3, -- Maximum number of notifications to show at once
+
+          -- Position and appearance
+          top_down = true, -- Display notifications from top to bottom
+          render = 'minimal', -- Display style: default, minimal, simple
+
+          -- Merge duplicate notifications
+          merge_duplicates = true, -- Merge notifications with the same content
+
+          -- Icons for different notification levels (optional)
+          icons = {
+            ERROR = '',
+            WARN = '',
+            INFO = '',
+            DEBUG = '',
+            TRACE = '✎',
+          },
+        }
+      end,
+    },
   },
 }
