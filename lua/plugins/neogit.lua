@@ -1,6 +1,9 @@
 return {
   'NeogitOrg/neogit',
-  opts = {},
+  opts = {
+    disable_commit_confirmation = false,
+    auto_show_console = true,
+  },
   dependencies = {
     'nvim-lua/plenary.nvim', -- required
     'sindrets/diffview.nvim', -- optional - Diff integration
