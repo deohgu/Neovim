@@ -6,10 +6,7 @@ return {
 
     -- Define linters for different filetypes
     lint.linters_by_ft = {
-      javascript = { 'eslint_d' },
-      typescript = { 'eslint_d' },
-      javascriptreact = { 'eslint_d' },
-      typescriptreact = { 'eslint_d' },
+      -- Remove eslint_d entries since it will be handled by the language server
       python = { 'ruff' },
       yaml = { 'yamllint' },
       terraform = { 'tflint' },

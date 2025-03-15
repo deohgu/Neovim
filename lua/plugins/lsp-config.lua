@@ -17,17 +17,16 @@ return {
     config = function()
       require('mason-tool-installer').setup {
         ensure_installed = {
-          -- These are CLI binaries for linting/formatting used by none-ls
           'stylua',
           'tflint',
           'hadolint',
           'markdownlint',
           'yamllint',
           'marksman',
-          'eslint_d', -- for JS/TS linting in none-ls
+          'eslint-lsp',
           'prettier',
           'black',
-          'ruff', -- for Python linting in none-ls
+          'ruff',
         },
         auto_update = true,
         run_on_start = true,
@@ -101,6 +100,14 @@ return {
             map('<leader>th', function()
               vim.lsp.inlay_hint(event.buf, nil)
             end, '[T]oggle Inlay [H]ints')
+          end
+
+          if client and client.name == 'eslint' then
+            -- Create an autocmd to run ESLint autofix on save
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              buffer = event.buf,
+              command = 'EslintFixAll',
+            })
           end
         end,
       })
@@ -255,6 +262,18 @@ return {
               importModuleSpecifierPreference = 'non-relative',
               importModuleSpecifierEnding = 'minimal',
             },
+          },
+
+          eslint = {
+            settings = {
+              run = 'onSave',
+              format = { enable = true },
+            },
+            -- If you want to use eslint for formatting too:
+            on_attach = function(client, bufnr)
+              -- This ensures eslint can also format the code
+              client.server_capabilities.documentFormattingProvider = true
+            end,
           },
         },
       }
