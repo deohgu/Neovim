@@ -30,6 +30,7 @@ return {
       'markdown',
       'rust',
       -- Add the following parsers to match the health check
+      'tsx',
       'regex',
       'c',
       'vim',
