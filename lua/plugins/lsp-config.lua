@@ -62,8 +62,9 @@ return {
           end, '[G]oto [R]eferences')
           map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
           map('gt', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-          map('<leader>fs', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-          map('<leader>fS', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          -- Symbols currently visualised with a different plugin
+          -- map('<leader>fs', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          -- map('<leader>fS', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
           map('<leader>rc', vim.lsp.buf.rename, '[R]e[n]ame')
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
