@@ -266,14 +266,17 @@ return {
           },
 
           eslint = {
-            settings = {
-              run = 'onSave',
-              format = { enable = true },
-            },
-            -- If you want to use eslint for formatting too:
+            root_dir = function(fname)
+              return require('lspconfig.util').root_pattern('.eslintrc.js', '.eslintrc.base.js', '.eslintrc.json', 'package.json', '.git')(fname)
+                or vim.fn.getcwd()
+            end,
+            settings = { run = 'onSave', format = { enable = true } },
             on_attach = function(client, bufnr)
-              -- This ensures eslint can also format the code
               client.server_capabilities.documentFormattingProvider = true
+              vim.api.nvim_create_autocmd('BufWritePre', {
+                buffer = bufnr,
+                command = 'EslintFixAll',
+              })
             end,
           },
         },
