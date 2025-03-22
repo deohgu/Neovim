@@ -264,21 +264,20 @@ return {
               importModuleSpecifierEnding = 'minimal',
             },
           },
+        },
 
-          eslint = {
-            root_dir = function(fname)
-              return require('lspconfig.util').root_pattern('.eslintrc.js', '.eslintrc.base.js', '.eslintrc.json', 'package.json', '.git')(fname)
-                or vim.fn.getcwd()
-            end,
-            settings = { run = 'onSave', format = { enable = true } },
-            on_attach = function(client, bufnr)
-              client.server_capabilities.documentFormattingProvider = true
-              vim.api.nvim_create_autocmd('BufWritePre', {
-                buffer = bufnr,
-                command = 'EslintFixAll',
-              })
-            end,
-          },
+        eslint = {
+          root_dir = function(fname)
+            return require('lspconfig.util').root_pattern('.eslintrc.js', '.eslintrc.json', 'package.json', '.git')(fname) or vim.fn.getcwd()
+          end,
+          settings = { run = 'onSave', format = { enable = true } },
+          on_attach = function(client, bufnr)
+            client.server_capabilities.documentFormattingProvider = true
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              buffer = bufnr,
+              command = 'EslintFixAll',
+            })
+          end,
         },
       }
 
