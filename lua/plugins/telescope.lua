@@ -45,8 +45,6 @@ return {
       -- For major updates, this must be adjusted manually.
       version = '^1.0.0',
     },
-
-    { 'fannheyward/telescope-coc.nvim' },
   },
 
   keys = {
@@ -264,11 +262,6 @@ return {
 
     telescope.setup {
       extensions = {
-        coc = {
-          theme = 'dropdown',
-          prefer_locations = false,
-          push_cursor_on_edit = true,
-        },
         live_grep_args = {
           auto_quoting = false, -- disable auto-quoting
           mappings = {
@@ -280,7 +273,6 @@ return {
 
     require('telescope').load_extension 'fzf'
     require('telescope').load_extension 'live_grep_args'
-    telescope.load_extension 'coc'
     -- require('telescope').load_extension 'undo'
     require('telescope').load_extension 'smart_open'
   end,
