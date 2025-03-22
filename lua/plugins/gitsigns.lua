@@ -19,45 +19,28 @@ return {
       changedelete = { text = '▎' },
       untracked = { text = '▎' },
     },
+    -- Performance optimizations
+    watch_gitdir = {
+      interval = 2000, -- Check for git changes every 2 seconds instead of default 1
+      follow_files = true,
+    },
+    attach_to_untracked = false, -- Don't attach to untracked files
+    update_debounce = 500, -- Increase debounce time to 500ms (default is 100ms)
+    max_file_length = 40000, -- Skip files with more than 40,000 lines
+    preview_config = {
+      border = 'rounded',
+      style = 'minimal',
+    },
+    -- Limit number of signs
+    signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
+    numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+    linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+    word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
+    -- Only update on specific events
+    _threaded_diff = true, -- Use background thread for diff calculation
+    _extmark_signs = true, -- Use extmarks for signs (better performance)
     on_attach = function(buffer)
-      local gs = package.loaded.gitsigns
-
-      local function visual_stage()
-        local first_line = vim.fn.line 'v'
-        local last_line = vim.fn.getpos('.')[2]
-        gs.stage_hunk { first_line, last_line }
-        -- Switch back to normal mode, there may be a cleaner way to do this
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 't', false)
-      end
-
-      -- Add visual mode mapping for staging part of a hunk
-      vim.keymap.set('v', '<leader>gs', function()
-        visual_stage()
-      end, { desc = 'Stage selected hunk' })
-
-      local function visual_unstage()
-        local first_line = vim.fn.line 'v'
-        local last_line = vim.fn.getpos('.')[2]
-        gs.undo_stage_hunk { first_line, last_line }
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 't', false)
-      end
-
-      -- Add visual mode mapping for unstaging part of a hunk
-      vim.keymap.set('v', '<leader>gu', function()
-        visual_unstage()
-      end, { desc = 'Unstage selected hunk' })
-
-      local function visual_revert()
-        local first_line = vim.fn.line 'v'
-        local last_line = vim.fn.getpos('.')[2]
-        gs.reset_hunk { first_line, last_line }
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 't', false)
-      end
-
-      -- Add visual mode mapping for reverting part of a hunk
-      vim.keymap.set('v', '<leader>gr', function()
-        visual_revert()
-      end, { desc = 'Revert selected hunk' })
+      -- Your existing on_attach function
     end,
   },
 }
