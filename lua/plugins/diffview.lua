@@ -1,7 +1,8 @@
 return {
   'sindrets/diffview.nvim',
+  cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
   keys = {
-    { '<leader>gD', '<cmd>lua toggle_diffview()<CR>', desc = 'Toggle Diff View' },
+    { '<leader>gd', '<cmd>lua toggle_diffview()<CR>', desc = 'Toggle Diff View' },
   },
   config = function()
     require('diffview').setup()
