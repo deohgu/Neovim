@@ -1,3 +1,34 @@
+-- Performance optimizations
+vim.loader.enable() -- Enable bytecode cache (Neovim >= 0.9)
+
+-- Disable unused built-in plugins
+local disabled_built_ins = {
+  'netrw',
+  'netrwPlugin',
+  'netrwSettings',
+  'netrwFileHandlers',
+  'gzip',
+  'zip',
+  'zipPlugin',
+  'tar',
+  'tarPlugin',
+  'getscript',
+  'getscriptPlugin',
+  'vimball',
+  'vimballPlugin',
+  '2html_plugin',
+  'logipat',
+  'spellfile_plugin',
+  'matchit',
+  'matchparen',
+  'tutor_mode_plugin',
+  'remote_plugins',
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+  vim.g['loaded_' .. plugin] = 1
+end
+
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '

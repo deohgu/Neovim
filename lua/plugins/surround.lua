@@ -1,5 +1,6 @@
 return {
   'tpope/vim-surround',
+  event = 'VeryLazy',
   keys = {
 
     -- Normal mode mappings

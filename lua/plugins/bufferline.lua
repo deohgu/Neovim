@@ -1,6 +1,6 @@
 return {
   'akinsho/bufferline.nvim',
-  event = 'VeryLazy',
+  event = 'BufAdd',
   keys = {
     { '<leader>bo', '<Cmd>BufferLineCloseOthers<CR>', desc = 'Close other buffers' },
     { '<leader>br', '<Cmd>BufferLineCloseRight<CR>', desc = 'Close buffers to the right' },
