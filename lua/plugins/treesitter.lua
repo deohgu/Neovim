@@ -109,22 +109,6 @@ return {
     -- Load the configurations
     treesitter_configs.setup(opts)
 
-    -- Create specialized folds using treesitter - only enable when actually using folds
-    vim.api.nvim_create_autocmd('BufReadPost', {
-      callback = function()
-        local buf = vim.api.nvim_get_current_buf()
-        local file_size = vim.fn.getfsize(vim.api.nvim_buf_get_name(buf))
-
-        -- Only set treesitter-based folding for smaller files
-        if file_size > 0 and file_size < 500 * 1024 then -- 500KB max
-          vim.opt_local.foldmethod = 'expr'
-          vim.opt_local.foldexpr = 'nvim_treesitter#foldexpr()'
-          -- Start with all folds open
-          vim.cmd 'normal! zR'
-        end
-      end,
-    })
-
     -- Performance optimization for large files
     vim.api.nvim_create_autocmd('BufReadPre', {
       callback = function(event)
@@ -137,7 +121,6 @@ return {
           vim.cmd 'TSBufDisable highlight'
           -- Also disable other heavy features
           vim.b[buf].large_buf = true
-          vim.opt_local.foldmethod = 'manual'
           vim.opt_local.syntax = 'off'
           vim.opt_local.swapfile = false
         end
