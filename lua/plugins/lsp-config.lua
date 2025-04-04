@@ -78,9 +78,14 @@ return {
 
           -- Toggle inlay hints if supported
           if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-            map('<leader>th', function()
-              vim.lsp.inlay_hint(event.buf, nil)
+            map('<leader>h', function()
+              local bufnr = event.buf
+              local enabled = vim.lsp.inlay_hint.is_enabled { bufnr = bufnr }
+              vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
             end, '[T]oggle Inlay [H]ints')
+
+            -- On by default
+            -- vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
           end
 
           if client and client.name == 'eslint' then
