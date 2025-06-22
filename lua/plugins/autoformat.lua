@@ -54,6 +54,7 @@ return { -- Autoformat
       typescriptreact = { 'prettierd' },
       html = { 'prettierd' },
       rust = {},
+      yaml = { 'yamlfix' },
     },
 
     formatters = {
