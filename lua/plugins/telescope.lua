@@ -112,13 +112,22 @@ return {
 
     -- Mapping for searching hidden files
     {
-      '<leader>fu', -- Change the keymap as needed
+      '<leader>fu',
       function()
         require('telescope.builtin').find_files {
-          find_command = { 'rg', '--ignore', '--hidden', '--files', '-u' },
+          prompt_title = 'Find Unrestricted (Hidden Included)',
+          find_command = {
+            'rg',
+            '--files',
+            '--hidden',
+            '-g',
+            '!.git',
+            '-g',
+            '!node_modules',
+          },
         }
       end,
-      desc = 'Find Unrestricted (.env)',
+      desc = 'Find Files + Hidden + Exclude node_modules',
     },
 
     -- git
