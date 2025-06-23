@@ -268,6 +268,16 @@ return {
     local telescope = require 'telescope'
 
     telescope.setup {
+      defaults = {
+        -- layout_strategy = 'vertical', -- or "horizontal"
+        -- layout_strategy = 'vertical',
+        layout_config = {
+          prompt_position = 'bottom',
+          width = 0.99,
+          height = 0.95,
+        },
+      },
+
       extensions = {
         live_grep_args = {
           auto_quoting = false, -- disable auto-quoting
