@@ -29,6 +29,7 @@ return {
           'black',
           'ruff',
           'prismals',
+          'tailwindcss-language-server',
         },
         auto_update = true,
         run_on_start = true,
