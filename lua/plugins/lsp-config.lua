@@ -28,6 +28,7 @@ return {
           'biome',
           'black',
           'ruff',
+          'prismals',
         },
         auto_update = true,
         run_on_start = true,
@@ -102,6 +103,7 @@ return {
       vim.filetype.add {
         pattern = {
           ['.*/templates/.*%.yaml'] = 'helm',
+          ['.*%.prisma'] = 'prisma',
         },
       }
 
@@ -266,6 +268,20 @@ return {
         },
 
         biome = {},
+
+        prismals = {
+          settings = {
+            prisma = {
+              validate = true,
+              lint = {
+                enable = true,
+              },
+              format = {
+                enable = true,
+              },
+            },
+          },
+        },
       }
 
       vim.diagnostic.config {

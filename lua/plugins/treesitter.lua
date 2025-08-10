@@ -70,6 +70,7 @@ return {
       'go',
       'rust',
       'terraform',
+      'prisma',
       -- Minimal required parsers
       'vim',
       'vimdoc',
