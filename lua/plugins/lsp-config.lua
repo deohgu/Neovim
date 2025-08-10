@@ -89,14 +89,6 @@ return {
             -- On by default
             -- vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
           end
-
-          if client and client.name == 'eslint' then
-            -- Create an autocmd to run ESLint autofix on save
-            vim.api.nvim_create_autocmd('BufWritePre', {
-              buffer = event.buf,
-              command = 'EslintFixAll',
-            })
-          end
         end,
       })
 
