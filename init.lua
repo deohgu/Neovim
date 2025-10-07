@@ -150,7 +150,42 @@ vim.keymap.set('v', '>', '>gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'J', '5j', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'K', '5k', { noremap = true, silent = true })
 
-vim.keymap.set('n', '<leader>p', ':let @+=expand("%:p")<CR>', { desc = 'Copy current file path to clipboard' })
+local function copy_relative_path()
+  -- Find the project root by looking for a .git directory, searching upward
+  -- You could add other markers here, like: { '.git', 'package.json' }
+  local root = vim.fs.find({ '.git' }, { upward = true, path = vim.fn.expand '%:p:h' })[1]
+
+  if not root then
+    vim.notify('Project root (.git) not found.', vim.log.levels.WARN)
+    return
+  end
+
+  -- Get the parent directory of the found marker (e.g., of the '.git' folder)
+  local root_dir = vim.fn.fnamemodify(root, ':h')
+
+  -- Get the full path of the current file
+  local file_path = vim.fn.expand '%:p'
+
+  -- Calculate the relative path by removing the root directory part
+  -- The +2 accounts for the directory separator '/'
+  local relative_path = string.sub(file_path, #root_dir + 2)
+
+  -- Copy the path to the system clipboard and notify the user
+  vim.fn.setreg('+', relative_path)
+  vim.notify('Copied relative path: ' .. relative_path)
+end
+
+local function copy_absolute_path()
+  -- The '%:p' modifier expands to the full absolute path
+  local path = vim.fn.expand '%:p'
+
+  -- Copy the path to the system clipboard and notify the user
+  vim.fn.setreg('+', path)
+  vim.notify('Copied absolute path: ' .. path)
+end
+
+vim.keymap.set('n', '<leader>p', copy_relative_path, { desc = 'Copy relative src file path' })
+vim.keymap.set('n', '<leader>P', copy_absolute_path, { desc = 'Copy absolute root file path' })
 
 -- [[ Basic Autocommands ]]
 --
